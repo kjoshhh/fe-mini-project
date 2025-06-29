@@ -1,103 +1,184 @@
-import Image from "next/image";
+import { Navigation } from "../components/NavigationBar";
+import { HeroBanner } from "../components/HeroBanner";
+import { EventSection } from "../components/EventSection";
+import { PromoBanner } from "../components/PromoBanner";
+import { Footer } from "../components/Footer";
 
-export default function Home() {
+// Mock data for events
+const featuredEvents = [
+  {
+    id: "1",
+    title: "Java Jazz Festival 2025",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
+    date: "5-7 Maret 2025",
+    time: "19:00 WIB",
+    location: "JIExpo Kemayoran, Jakarta",
+    price: "Rp 750.000",
+    rating: 4.8,
+    category: "Musik",
+    isFeatured: true
+  },
+  {
+    id: "2",
+    title: "Indonesia Comic Con 2025",
+    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+    date: "15-17 Februari 2025",
+    time: "10:00 WIB",
+    location: "ICE BSD, Tangerang",
+    price: "Rp 125.000",
+    rating: 4.6,
+    category: "Hiburan",
+    isFeatured: true
+  },
+  {
+    id: "3",
+    title: "Seminar Digital Marketing 2025",
+    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=300&fit=crop",
+    date: "20 Januari 2025",
+    time: "09:00 WIB",
+    location: "Hotel Mulia, Jakarta",
+    price: "Rp 350.000",
+    rating: 4.7,
+    category: "Edukasi",
+    isFeatured: true
+  },
+  {
+    id: "4",
+    title: "Konser Raisa Live in Concert",
+    image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=400&h=300&fit=crop",
+    date: "10 Februari 2025",
+    time: "20:00 WIB",
+    location: "Istora Senayan, Jakarta",
+    price: "Rp 500.000",
+    rating: 4.9,
+    category: "Musik",
+    isFeatured: true
+  }
+];
+
+const topEvents = [
+  {
+    id: "5",
+    title: "Liga 1 Indonesia: Persija vs Arema FC",
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=300&fit=crop",
+    date: "25 Januari 2025",
+    time: "19:30 WIB",
+    location: "Stadion GBK, Jakarta",
+    price: "Rp 75.000",
+    rating: 4.5,
+    category: "Olahraga"
+  },
+  {
+    id: "6",
+    title: "Stand Up Comedy: Raditya Dika",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=300&fit=crop",
+    date: "12 Februari 2025",
+    time: "20:00 WIB",
+    location: "Balai Sarbini, Jakarta",
+    price: "Rp 200.000",
+    rating: 4.7,
+    category: "Komedi"
+  },
+  {
+    id: "7",
+    title: "Pameran Seni Rupa Modern",
+    image: "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=400&h=300&fit=crop",
+    date: "1-28 Februari 2025",
+    time: "10:00 WIB",
+    location: "Galeri Nasional, Jakarta",
+    price: "Rp 25.000",
+    rating: 4.3,
+    category: "Seni"
+  },
+  {
+    id: "8",
+    title: "Festival Kuliner Nusantara",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=300&fit=crop",
+    date: "18-20 Februari 2025",
+    time: "11:00 WIB",
+    location: "Lapangan Banteng, Jakarta",
+    price: "Gratis",
+    rating: 4.4,
+    category: "Kuliner"
+  }
+];
+
+const upcomingEvents = [
+  {
+    id: "9",
+    title: "Konser Dewa 19 Reunion",
+    image: "https://images.unsplash.com/photo-1571019613914-85e3d652739d?w=400&h=300&fit=crop",
+    date: "15 Maret 2025",
+    time: "19:00 WIB",
+    location: "Stadion GBK, Jakarta",
+    price: "Rp 400.000",
+    rating: 4.8,
+    category: "Musik"
+  },
+  {
+    id: "10",
+    title: "TED Talks Jakarta 2025",
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=300&fit=crop",
+    date: "22 Maret 2025",
+    time: "14:00 WIB",
+    location: "Kempinski Hotel, Jakarta",
+    price: "Rp 450.000",
+    rating: 4.6,
+    category: "Edukasi"
+  },
+  {
+    id: "11",
+    title: "Indonesia Fashion Week 2025",
+    image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&h=300&fit=crop",
+    date: "5-10 April 2025",
+    time: "16:00 WIB",
+    location: "JCC Senayan, Jakarta",
+    price: "Rp 150.000",
+    rating: 4.5,
+    category: "Fashion"
+  },
+  {
+    id: "12",
+    title: "Workshop Fotografi Profesional",
+    image: "https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?w=400&h=300&fit=crop",
+    date: "28 Maret 2025",
+    time: "09:00 WIB",
+    location: "Creative Hub, Jakarta",
+    price: "Rp 275.000",
+    rating: 4.7,
+    category: "Workshop"
+  }
+];
+
+export default function App() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <main>
+        <HeroBanner />
+        
+        <EventSection 
+          title="Event Unggulan"
+          subtitle="Event terpopuler dan paling dinanti bulan ini"
+          events={featuredEvents}
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        
+        <EventSection 
+          title="Event Terpopuler"
+          subtitle="Pilihan terbaik berdasarkan rating dan ulasan pengguna"
+          events={topEvents}
+        />
+        
+        <PromoBanner />
+        
+        <EventSection 
+          title="Event Mendatang"
+          subtitle="Jangan sampai terlewat! Book tiket sekarang"
+          events={upcomingEvents}
+        />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      
+      <Footer />
     </div>
   );
 }
