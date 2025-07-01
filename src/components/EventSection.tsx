@@ -24,7 +24,7 @@ interface EventSectionProps {
 export function EventSection({ title, subtitle, events, showViewAll = true }: EventSectionProps) {
   return (
     <section className="py-12">
-      <div className="container">
+      <div className="container max-w-screen px-[64px]">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h2 className="text-3xl font-bold mb-2">{title}</h2>
