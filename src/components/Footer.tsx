@@ -9,10 +9,7 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">E</span>
-              </div>
-              <span className="font-bold text-xl">EventTix</span>
+              <span className="font-bold text-xl">TixID</span>
             </div>
             <p className="text-muted-foreground">
               Platform terpercaya untuk menemukan dan membeli tiket event terbaik di Indonesia.

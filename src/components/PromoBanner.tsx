@@ -7,7 +7,7 @@ export function PromoBanner() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 text-white">
           <div className="flex-1 text-center lg:text-left">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Bergabung dengan EventTix Pro
+              Bergabung dengan TixID Pro
             </h2>
             <p className="text-xl mb-6 opacity-90">
               Dapatkan akses eksklusif ke event premium, diskon khusus, dan notifikasi early bird untuk event terbaru!

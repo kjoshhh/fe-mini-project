@@ -17,10 +17,7 @@ export function Navigation() {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-md bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold">E</span>
-          </div>
-          <span className="font-bold text-xl">EventTix</span>
+          <span className="font-bold text-xl px-12">TixID</span>
         </div>
 
         {/* Search Bar */}
