@@ -24,6 +24,8 @@ export default function SignIn() {
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
+  
+
 
     const signIn = async (payload: SignInPayload) => {
         const res = await axios.post("http://localhost:3030/auth/login", payload);
