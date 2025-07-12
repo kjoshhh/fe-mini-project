@@ -24,7 +24,8 @@ export default function SignIn() {
     const [loading, setLoading] = useState(false);
 
     const signIn = async (payload: SignInPayload) => {
-        const res = await axios.post("http://localhost:3030/auth/login", payload);
+        const apiUrl = process.env.NEXT_PUBLIC_URL;
+        const res = await axios.post(`${apiUrl}/auth/login`, payload);
         return res.data;
     };
 
