@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@/context/AuthContext";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
@@ -17,6 +18,7 @@ interface SignInPayload {
 
 export default function SignIn() {
     const router = useRouter();
+    const { login } = useAuth();
 
     const inputEmailRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
@@ -34,6 +36,7 @@ export default function SignIn() {
         try {
             const email = inputEmailRef.current?.value;
             const password = inputPasswordRef.current?.value;
+            
 
             if (!email || !password) {
                 toast.warning("Please fill in all fields.");
@@ -48,8 +51,11 @@ export default function SignIn() {
             // Simpan token ke localStorage atau cookie
             localStorage.setItem("token", res.token);
 
+            // panggil login dari authcontext
+            login(res.token)
+
             // Redirect ke halaman dashboard atau home
-            router.replace("/dashboard");
+            router.replace("/");
         } catch (err: any) {
             const errorMessage =
                 err?.response?.data?.error?.toLowerCase() || err?.message?.toLowerCase() || "";
@@ -67,15 +73,20 @@ export default function SignIn() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
-            <div className="bg-gray-800 w-full max-w-md p-8 rounded-md shadow-lg space-y-6">
-                <h1 className="text-3xl font-bold text-white text-center uppercase">
-                    Sign In to your account
+        <div className="
+                        min-h-screen min-w-screen 
+                        bg-[url('/assets/bg-signin.jpg')] bg-cover bg-center
+                        flex items-center justify-center 
+                        px-4
+                        ">
+            <div className="bg-white/50 w-full max-w-md p-8 rounded-md shadow-lg space-y-6">
+                <h1 className="text-3xl font-bold text-black text-center uppercase">
+                    Welcome Back
                 </h1>
 
                 <form className="space-y-4" onSubmit={btnSignIn}>
                     <div className="flex flex-col space-y-1">
-                        <Label htmlFor="email" className="text-sm font-medium text-white">
+                        <Label htmlFor="email" className="text-sm font-medium text-black">
                             Email
                         </Label>
                         <Input
@@ -88,7 +99,7 @@ export default function SignIn() {
                     </div>
 
                     <div className="flex flex-col space-y-1">
-                        <Label htmlFor="password" className="text-sm font-medium text-white">
+                        <Label htmlFor="password" className="text-sm font-medium text-black">
                             Password
                         </Label>
                         <div className="flex items-center gap-2">
@@ -110,7 +121,7 @@ export default function SignIn() {
                         </div>
                         <Link
                             href="/forget-password"
-                            className="text-blue-400 hover:underline hover:text-blue-200 text-center relative top-2"
+                            className="text-blue-800 hover:underline hover:text-black text-center relative top-2"
                         >
                             Forgot Password
                         </Link>
@@ -126,11 +137,11 @@ export default function SignIn() {
                     </Button>
                 </form>
 
-                <p className="text-center text-sm text-white">
+                <p className="text-center text-sm text-black">
                     Don’t have an account?{" "}
                     <Link
                         href="/sign-up"
-                        className="text-blue-400 hover:underline hover:text-blue-200"
+                        className="text-blue-800 hover:underline hover:text-black"
                     >
                         Sign Up
                     </Link>

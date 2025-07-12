@@ -44,15 +44,20 @@ export default function ForgetPassword() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
-            <div className="bg-gray-800 w-full max-w-md p-8 rounded-md shadow-lg space-y-6">
-                <p className="text-white text-sm text-center">
+        <div className="
+                        min-h-screen min-w-screen 
+                        bg-[url('/assets/bg-forget-password.jpg')] bg-cover bg-center
+                        flex items-center justify-center 
+                        px-4 
+                        ">
+            <div className="bg-white/70 w-full max-w-md p-8 rounded-md shadow-lg space-y-6">
+                <p className="text-black text-sm text-center">
                     Enter your email and we’ll send you a link to reset your password.
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="flex flex-col space-y-1">
-                        <Label htmlFor="email" className="text-sm font-medium text-white">
+                        <Label htmlFor="email" className="text-sm font-medium text-black">
                             Email Address
                         </Label>
                         <Input
@@ -60,7 +65,7 @@ export default function ForgetPassword() {
                             id="email"
                             placeholder="example@mail.com"
                             ref={emailRef}
-                            className="bg-white/90 text-black"
+                            className="bg-white/90 text-black border border-black border-2"
                         />
                     
                     </div>
@@ -68,7 +73,7 @@ export default function ForgetPassword() {
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="cursor-pointer w-full bg-white text-gray-900 font-semibold rounded-md hover:bg-white/80 transition"
+                        className="flex mx-auto items-center justify-center cursor-pointer w-60 bg-white text-gray-900 font-semibold rounded-md hover:bg-black/80 hover:text-white transition"
                     >
                         {loading ? "Sending..." : "Submit"}
                     </Button>

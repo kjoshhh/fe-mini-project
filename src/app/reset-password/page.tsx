@@ -27,7 +27,7 @@ export default function resetPassword() {
                                 type={showNewPassword ? "text" : "password"}
                                 id="password"
                                 ref={inputNewPasswordRef}
-                                placeholder="Input your password"
+                                placeholder="Input your New Password"
                                 className="p-2 rounded-md bg-white/90 text-black border border-transparent focus:outline-none focus:ring-2 focus:ring-white"
                             />
                             <Button

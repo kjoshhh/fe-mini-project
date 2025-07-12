@@ -71,15 +71,20 @@ export default function SignUp() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
-            <div className="bg-gray-800 w-full max-w-md p-8 rounded-md shadow-lg space-y-6">
-                <h1 className="text-3xl font-bold text-white text-center uppercase">
+        <div className="
+                        min-h-screen min-w-screen 
+                        bg-[url('/assets/bg-signup.jpg')] bg-cover bg-center
+                        flex items-center justify-center 
+                        px-4
+                        ">
+            <div className="bg-white/70 w-full max-w-md p-8 rounded-md shadow-lg space-y-6">
+                <h1 className="text-3xl font-bold text-black text-center uppercase">
                     Create your account
                 </h1>
 
                 <form className="space-y-4" onSubmit={btnSignUp}>
                     <div className="flex flex-col space-y-1">
-                        <Label htmlFor="username" className="text-sm font-medium text-white">
+                        <Label htmlFor="username" className="text-sm font-medium text-black">
                             Username
                         </Label>
                         <Input
@@ -91,7 +96,7 @@ export default function SignUp() {
                     </div>
 
                     <div className="flex flex-col space-y-1">
-                        <Label htmlFor="email" className="text-sm font-medium text-white">
+                        <Label htmlFor="email" className="text-sm font-medium text-black">
                             Email
                         </Label>
                         <Input
@@ -104,7 +109,7 @@ export default function SignUp() {
                     </div>
 
                     <div className="flex flex-col space-y-1">
-                        <Label htmlFor="password" className="text-sm font-medium text-white">
+                        <Label htmlFor="password" className="text-sm font-medium text-black">
                             Password
                         </Label>
                         <div className="flex items-center gap-2">
@@ -120,13 +125,13 @@ export default function SignUp() {
                                 onClick={() => setShowPassword(!showPassword)}
                                 className="p-2 cursor-pointer"
                             >
-                                {showPassword ? <Eye size={16} /> : <EyeOff size={16} />}
+                                {showPassword ? <Eye size={10} /> : <EyeOff size={10} />}
                             </Button>
                         </div>
                     </div>
 
                     <div className="flex flex-col space-y-1">
-                        <Label htmlFor="referralCode" className="text-sm font-medium text-white">
+                        <Label htmlFor="referralCode" className="text-sm font-medium text-black">
                             Referral Code (optional)
                         </Label>
                         <Input
@@ -147,11 +152,11 @@ export default function SignUp() {
                     </Button>
                 </form>
 
-                <p className="text-center text-sm text-white">
+                <p className="text-center text-sm text-black">
                     Already have an account?{" "}
                     <Link
                         href="/sign-in"
-                        className="text-blue-400 hover:underline hover:text-blue-200"
+                        className="text-blue-800 hover:underline hover:text-blue-200"
                     >
                         Sign In
                     </Link>

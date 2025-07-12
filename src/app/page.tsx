@@ -62,7 +62,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      {/* <Navigation /> */}
       <main>
         <HeroBanner />
 
