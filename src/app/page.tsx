@@ -101,7 +101,7 @@ export default function App() {
           events={events}
         />
         
-        <PromoBanner />
+        {/* <PromoBanner /> */}
         
         <EventSection 
           title="Event Mendatang"

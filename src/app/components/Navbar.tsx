@@ -16,9 +16,9 @@ import { useAuth } from "@/context/AuthContext";
 
 
 export default function Navbar() {
-    const { isLoggedIn, logout, isAuthChecked } = useAuth();
+    const { isLoggedIn, logout, isAuthChecked, user, switchRole } = useAuth();
+    const [isSwitching, setIsSwitching] = useState(false);
 
-    
 
     return (
         <div className="fixed top-0 left-0 w-full z-50 bg-black/10 backdrop-blur-sm bg-opacity-30 border-b border-white/10">
@@ -58,25 +58,94 @@ export default function Navbar() {
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button className="rounded-full w-10 h-10 p-0 bg-white/20 hover:bg-white/30 cursor-pointer">
-                                        <User className="h-5 w-5 text-white" />
+                                        <User className="h-5 w-5 text-white cursor-pointer" />
                                     </Button>
                                 </DropdownMenuTrigger>
-
                                 <DropdownMenuContent align="end" className="w-48 bg-white text-black shadow-md">
-                                    {/* profile */}
+
+                                    {/* Link Umum */}
                                     <DropdownMenuItem>
                                         <Link href="/profile" className="w-full">Profile</Link>
                                     </DropdownMenuItem>
-                                    {/* ticket */}
-                                    <DropdownMenuItem>
-                                        <Link href="/my-tickets" className="w-full">My Ticket</Link>
-                                    </DropdownMenuItem>
-                                    {/* coupon */}
-                                    <DropdownMenuItem>
-                                        <Link href="/coupon" className="w-full">Coupon</Link>
-                                    </DropdownMenuItem>
+
                                     <DropdownMenuSeparator />
-                                    {/* logout */}
+
+                                    {user?.role === "CUSTOMER" && (
+                                        <>
+                                            {/* CUSTOMER only */}
+                                            <DropdownMenuItem>
+                                                <Link href="/" className="w-full">Event</Link>
+                                            </DropdownMenuItem>
+
+                                            <DropdownMenuItem>
+                                                <Link href="/" className="w-full">My Ticket</Link>
+                                            </DropdownMenuItem>
+
+                                            <DropdownMenuItem>
+                                                <Link href="/" className="w-full">Vouchers</Link>
+                                            </DropdownMenuItem>
+
+                                            {/* 🔁 Tombol Switch ke Organizer */}
+                                            <DropdownMenuItem
+                                                onClick={async () => {
+                                                    setIsSwitching(true);
+                                                    try {
+                                                        await switchRole();
+                                                        window.location.reload();
+                                                    } catch (error) {
+                                                        console.error("Failed to switch role:", error);
+                                                    } finally {
+                                                        setIsSwitching(false)
+                                                    }
+
+                                                }}
+                                                disabled={isSwitching}
+                                                className="font-light text-blue-600 cursor-pointer"
+                                            >
+                                                Masuk sebagai Organizer
+                                            </DropdownMenuItem>
+                                        </>
+                                    )}
+
+                                    {user?.role === "ORGANIZER" && (
+                                        <>
+                                            {/* ORGANIZER only */}
+                                            <DropdownMenuItem>
+                                                <Link href="" className="w-full">Dashboard</Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <Link href="" className="w-full">Create Event</Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <Link href="" className="w-full">My Events</Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <Link href="" className="w-full">Attendees</Link>
+                                            </DropdownMenuItem>
+
+                                            {/* 🔁 Tombol Switch ke Customer */}
+                                            <DropdownMenuItem
+                                                onClick={async () => {
+                                                    setIsSwitching(true);
+                                                    try {
+                                                        await switchRole();
+                                                        window.location.reload();
+                                                    } catch (error) {
+                                                        console.error("Failed to switch role:", error);
+                                                    } finally {
+                                                        setIsSwitching(false)
+                                                    }
+                                                }}
+                                                disabled={isSwitching}
+                                                className="font-light text-blue-600 cursor-pointer"
+                                            >
+                                                {isSwitching ? "Mengalihkan peran..." : "Masuk sebagai Customer"}
+                                            </DropdownMenuItem>
+                                        </>
+                                    )}
+
+                                    <DropdownMenuSeparator />
+
                                     <DropdownMenuItem
                                         onClick={() => {
                                             logout();
@@ -87,6 +156,7 @@ export default function Navbar() {
                                         Logout
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
+
                             </DropdownMenu>
 
 
@@ -102,7 +172,7 @@ export default function Navbar() {
 
                             {/* Sign In */}
                             <Link href="/sign-in">
-                                <Button className="bg-white text-black border border-white/30 hover:bg-white/10 hover:text-white hover:backdrop-blur-md transition font-semibold px-4 py-2 rounded-md cursor-pointer">
+                                <Button className="bg-white/50 text-black border border-white/30 hover:bg-white/10 hover:text-white hover:backdrop-blur-md transition font-semibold px-4 py-2 rounded-md cursor-pointer">
                                     Sign In
                                 </Button>
                             </Link>
