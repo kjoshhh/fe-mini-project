@@ -5,12 +5,29 @@ import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
+interface Coupon {
+    id: number;
+    code: string;
+    discount: number;
+    expiresAt: string;
+}
+
+interface Point {
+    id: number;
+    userId: number;
+    amount: number;
+    expiredAt: string;
+}
+
 interface DecodedToken {
     id: string;
     email: string;
     role: "CUSTOMER" | "ORGANIZER";
     username: string;
     referralCode: string;
+    coupons: Coupon[];
+    userPoints: Point[];
+    profileImg: string;
 }
 
 interface AuthContextProps {

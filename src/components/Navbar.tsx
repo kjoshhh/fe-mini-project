@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/context/AuthContext";
 import { usePathname } from "next/navigation";
+useAuth
 
 
 export default function Navbar() {
@@ -51,7 +52,7 @@ export default function Navbar() {
                         <>
                             {user?.role === "CUSTOMER" && (
                                 <>
-                                    < Link href="/my-tickets">
+                                    < Link href="/my-tickets" className="cursor-pointer">
                                         <Button
                                             variant="ghost"
                                             className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-black cursor-pointer"
@@ -65,7 +66,7 @@ export default function Navbar() {
 
                             {user?.role === "ORGANIZER" && (
                                 <>
-                                    < Link href="/create-event">
+                                    < Link href="/create-event" className="cursor-pointer">
                                         <Button
                                             variant="ghost"
                                             className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-black cursor-pointer"
@@ -82,7 +83,14 @@ export default function Navbar() {
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button className="rounded-full w-10 h-10 p-0 bg-white/20 hover:bg-white/30 cursor-pointer">
-                                        <User className="h-5 w-5 text-white cursor-pointer" />
+                                        <img
+                                            src={
+                                                user?.profileImg ??
+                                                `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.username || "U")}`
+                                            }
+                                            alt="Profile"
+                                            className="w-full h-full object-cover rounded-full"
+                                        />
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end" className="w-48 bg-white text-black shadow-md">
