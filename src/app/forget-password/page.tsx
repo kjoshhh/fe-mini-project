@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import Link from "next/link";
 import axios from "axios";
 
 export default function ForgetPassword() {
@@ -63,11 +64,11 @@ export default function ForgetPassword() {
                         <Input
                             type="email"
                             id="email"
-                            placeholder="example@mail.com"
+                            placeholder="Input your email"
                             ref={emailRef}
-                            className="bg-white/90 text-black border border-black border-2"
+                            className="bg-white/90 text-black border-black border-2"
                         />
-                    
+
                     </div>
 
                     <Button
@@ -77,6 +78,11 @@ export default function ForgetPassword() {
                     >
                         {loading ? "Sending..." : "Submit"}
                     </Button>
+                    <Link href="/sign-in">
+                        <Button className="flex mx-auto items-center justify-center cursor-pointer w-60 bg-black text-white font-semibold rounded-md hover:bg-white/80 hover:text-black transition">
+                            Back
+                        </Button>
+                    </Link>
                 </form>
             </div>
         </div>

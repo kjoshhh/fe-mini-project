@@ -10,6 +10,7 @@ interface DecodedToken {
     email: string;
     role: "CUSTOMER" | "ORGANIZER";
     username: string;
+    referralCode: string;
 }
 
 interface AuthContextProps {

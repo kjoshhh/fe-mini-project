@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Ticket, User } from "lucide-react";
+import { CalendarPlus } from 'lucide-react';
 import Link from "next/link";
 import {
     DropdownMenu,
@@ -13,11 +14,14 @@ import {
     DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/context/AuthContext";
+import { usePathname } from "next/navigation";
 
 
 export default function Navbar() {
     const { isLoggedIn, logout, isAuthChecked, user, switchRole } = useAuth();
     const [isSwitching, setIsSwitching] = useState(false);
+    const pathname = usePathname();
+    const isActive = pathname === "/"
 
 
     return (
@@ -25,7 +29,9 @@ export default function Navbar() {
             <div className="relative max-w-7xl mx-auto px-4 flex items-center justify-between h-14">
                 {/* Logo */}
                 <Link href="/" className="flex-shrink-0 z-10">
-                    <span className="font-bold text-2xl text-white">EventTix</span>
+                    <span className={`font-bold text-2xl transition-colors ${isActive ? "text-white" : "text-black"}`}>
+                        EventTix
+                    </span>
                 </Link>
 
                 {/* Search Bar */}
@@ -43,16 +49,34 @@ export default function Navbar() {
                 <div className="flex gap-4 items-center">
                     {!isAuthChecked ? null : isLoggedIn ? (
                         <>
-                            {/* Ticket Button */}
-                            <Link href="/my-tickets">
-                                <Button
-                                    variant="ghost"
-                                    className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-black cursor-pointer"
-                                >
-                                    <Ticket className="h-5 w-5 mr-2" />
-                                    My Ticket
-                                </Button>
-                            </Link>
+                            {user?.role === "CUSTOMER" && (
+                                <>
+                                    < Link href="/my-tickets">
+                                        <Button
+                                            variant="ghost"
+                                            className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-black cursor-pointer"
+                                        >
+                                            <Ticket className="h-5 w-5 mr-2" />
+                                            My Ticket
+                                        </Button>
+                                    </Link>
+                                </>
+                            )}
+
+                            {user?.role === "ORGANIZER" && (
+                                <>
+                                    < Link href="/create-event">
+                                        <Button
+                                            variant="ghost"
+                                            className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-black cursor-pointer"
+                                        >
+                                            <CalendarPlus />
+                                            Create Event
+                                        </Button>
+                                    </Link>
+                                </>
+                            )}
+
 
                             {/* Circle Profile Button */}
                             <DropdownMenu>
@@ -65,7 +89,7 @@ export default function Navbar() {
 
                                     {/* Link Umum */}
                                     <DropdownMenuItem>
-                                        <Link href="/profile" className="w-full">Profile</Link>
+                                        <Link href="/dashboard/profile" className="w-full">Profile</Link>
                                     </DropdownMenuItem>
 
                                     <DropdownMenuSeparator />
@@ -165,14 +189,14 @@ export default function Navbar() {
                         <>
                             {/* Sign Up */}
                             <Link href="/sign-up">
-                                <Button className="bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-black transition font-semibold px-4 py-2 rounded-md cursor-pointer">
+                                <Button className="bg-white/10 backdrop-blur-md text-white hover:bg-white hover:text-black transition font-semibold px-4 py-2 rounded-md cursor-pointer">
                                     Sign Up
                                 </Button>
                             </Link>
 
                             {/* Sign In */}
                             <Link href="/sign-in">
-                                <Button className="bg-white/50 text-black border border-white/30 hover:bg-white/10 hover:text-white hover:backdrop-blur-md transition font-semibold px-4 py-2 rounded-md cursor-pointer">
+                                <Button className="bg-white text-black border border-white/30 hover:bg-white/10 hover:text-white hover:backdrop-blur-md transition font-semibold px-4 py-2 rounded-md cursor-pointer">
                                     Sign In
                                 </Button>
                             </Link>
@@ -180,6 +204,6 @@ export default function Navbar() {
                     )}
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
