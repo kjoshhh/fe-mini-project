@@ -21,11 +21,11 @@ export function HeroBanner() {
           Semua ada di sini!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="text-lg px-8 py-6">
-            Jelajahi Event
+          <Button size="lg" className="text-lg px-8 py-6 cursor-pointer">
+            Explore Event
           </Button>
-          <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-black">
-            Buat Event
+          <Button size="lg" variant="outline" className="cursor-pointer text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-black">
+            Create Event
           </Button>
         </div>
       </div>
