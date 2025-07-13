@@ -9,6 +9,7 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useAuth } from "@/context/AuthContext";
 
 interface RegisterPayload {
     username: string;
@@ -19,6 +20,7 @@ interface RegisterPayload {
 
 export default function SignUp() {
     const router = useRouter();
+    const { login, refreshUser } = useAuth();
 
     const inputUserNameRef = useRef<HTMLInputElement>(null);
     const inputEmailRef = useRef<HTMLInputElement>(null);
