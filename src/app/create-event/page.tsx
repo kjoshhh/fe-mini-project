@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { HeroBanner } from "@/components/HeroBanner";
+import Navbar from "@/components/Navbar";
 
 
 export default function CreateEventPage() {
@@ -93,6 +94,7 @@ export default function CreateEventPage() {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
+      <Navbar variant="solid-light"/>
       <HeroBanner />
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
