@@ -18,13 +18,13 @@ interface SignInPayload {
 
 export default function SignIn() {
     const router = useRouter();
-    const { login } = useAuth();
+    const { login, refreshUser } = useAuth();
 
     const inputEmailRef = useRef<HTMLInputElement>(null);
+    const inputUserNameRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
-  
 
 
     const signIn = async (payload: SignInPayload) => {
@@ -38,7 +38,7 @@ export default function SignIn() {
         try {
             const email = inputEmailRef.current?.value;
             const password = inputPasswordRef.current?.value;
-            
+
 
             if (!email || !password) {
                 toast.warning("Please fill in all fields.");
@@ -55,6 +55,7 @@ export default function SignIn() {
 
             // panggil login dari authcontext
             login(res.token)
+            await refreshUser();
 
             // Redirect ke halaman dashboard atau home
             router.replace("/");

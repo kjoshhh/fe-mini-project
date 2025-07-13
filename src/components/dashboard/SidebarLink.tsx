@@ -1,23 +1,20 @@
-"use client";
-
 import Link from "next/link";
-import clsx from "clsx";
 
-interface Props {
+interface SidebarLinkProps {
     href: string;
     label: string;
-    active?: boolean;
+    active: boolean;
 }
 
-export default function SidebarLink({ href, label, active = false }: Props) {
+export default function SidebarLink({ href, label, active }: SidebarLinkProps) {
     return (
         <li>
             <Link
                 href={href}
-                className={clsx(
-                    "block px-4 py-2 rounded hover:bg-gray-200 transition",
-                    active && "bg-gray-300 font-semibold"
-                )}
+                className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${active
+                        ? "bg-blue-100 text-blue-700 font-semibold"
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
             >
                 {label}
             </Link>
