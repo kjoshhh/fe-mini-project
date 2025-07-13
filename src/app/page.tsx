@@ -8,6 +8,7 @@ import { getAllEvents } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { EventSearch } from "../components/EventSearch"
 import Navbar from "@/components/Navbar";
+import { useRouter } from "next/navigation";
 
 interface Event {
   id: string;
@@ -22,6 +23,7 @@ interface Event {
 
 export default function App() {
   const [events, setEvents] = useState<Event[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -65,44 +67,30 @@ export default function App() {
       {/* <Navigation /> */}
       <main>
         <HeroBanner />
+        <Navbar/>
 
         <EventSearch
           onSearch={(filters) => {
-            // Contoh filtering di sini
-            const filtered = events.filter((event) => {
-              const matchKeyword = filters.keyword
-                ? event.title.toLowerCase().includes(filters.keyword.toLowerCase())
-                : true;
+            const query = new URLSearchParams({
+              keyword: filters.keyword ?? "",
+              category: filters.category ?? "",
+              location: filters.location ?? "",
+            }).toString();
 
-              const matchCategory = filters.category
-                ? event.category === filters.category
-                : true;
-
-              const matchLocation = filters.location
-                ? event.location === filters.location
-                : true;
-
-              return matchKeyword && matchCategory && matchLocation;
-            });
-
-            setEvents(filtered);
+            router.push(`/event-list?${query}`);
           }}
         />
-        
+
         <EventSection 
           title="Event Unggulan"
           subtitle="Event terpopuler dan paling dinanti bulan ini"
           events={events}
         />
-        
         <EventSection 
           title="Event Terpopuler"
           subtitle="Pilihan terbaik berdasarkan rating dan ulasan pengguna"
           events={events}
         />
-        
-        {/* <PromoBanner /> */}
-        
         <EventSection 
           title="Event Mendatang"
           subtitle="Jangan sampai terlewat! Book tiket sekarang"

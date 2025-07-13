@@ -1,6 +1,7 @@
 import { EventDetails } from "@/components/EventDetails";
 import { EventContent } from "@/components/EventContent";
 import { Breadcrumb } from "@/components/Breadcrumbs";
+import Navbar from "@/components/Navbar";
 
 interface EventData {
   id: number;
@@ -43,6 +44,7 @@ export default async function EventPage({ params }: { params: { id: string } }) 
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navbar variant="solid-light"/>
       <Breadcrumb />
       <EventDetails event={event} />
       <EventContent event={event} />
