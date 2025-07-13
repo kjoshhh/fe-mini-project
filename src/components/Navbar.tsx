@@ -16,8 +16,11 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { usePathname } from "next/navigation";
 
+interface NavbarProps{
+    className?: string;
+}
 
-export default function Navbar() {
+export default function Navbar({className}: NavbarProps) {
     const { isLoggedIn, logout, isAuthChecked, user, switchRole } = useAuth();
     const [isSwitching, setIsSwitching] = useState(false);
     const pathname = usePathname();

@@ -1,6 +1,5 @@
 "use client";
 
-import { Navigation } from "../components/NavigationBar";
 import { HeroBanner } from "../components/HeroBanner";
 import { EventSection } from "../components/EventSection";
 import { PromoBanner } from "../components/PromoBanner";
@@ -8,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { getAllEvents } from "@/lib/api";
 import { useEffect, useState } from "react";
 import { EventSearch } from "../components/EventSearch"
+import Navbar from "@/components/Navbar";
 
 interface Event {
   id: string;
