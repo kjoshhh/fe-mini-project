@@ -1,4 +1,5 @@
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 export function HeroBanner() {
   return (
@@ -11,22 +12,24 @@ export function HeroBanner() {
         />
         <div className="absolute inset-0 bg-black/50" />
       </div>
-      
+
       <div className="relative z-10 text-center text-white max-w-4xl px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
           Temukan Event Terbaik di Indonesia
         </h1>
         <p className="text-xl md:text-2xl mb-8 opacity-90">
-          Dari konser musik, pertandingan olahraga, hingga seminar bisnis. 
+          Dari konser musik, pertandingan olahraga, hingga seminar bisnis.
           Semua ada di sini!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" className="text-lg px-8 py-6 cursor-pointer">
             Explore Event
           </Button>
-          <Button size="lg" variant="outline" className="cursor-pointer text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-black">
-            Create Event
-          </Button>
+          <Link href="/create-event">
+            <Button size="lg" variant="outline" className="cursor-pointer text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-black">
+              Create Event
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

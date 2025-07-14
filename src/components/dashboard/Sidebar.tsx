@@ -76,14 +76,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                         <>
                             <h3 className="text-xs text-gray-400 uppercase mt-4 px-2">Organizer</h3>
                             <SidebarLink
-                                href="/dashboard/create-event"
+                                href="/dashboard/organizer/create-event"
                                 label="Create Event"
-                                active={pathname === "/dashboard/create-event"}
+                                active={pathname === "/dashboard/organizer/create-event"}
                             />
                             <SidebarLink
-                                href="/dashboard/my-events"
+                                href="/event-list"
                                 label="My Events"
-                                active={pathname === "/dashboard/my-events"}
+                                active={pathname === "/event-list"}
                             />
                             <SidebarLink
                                 href="/dashboard/organizer/events/1/attendes"

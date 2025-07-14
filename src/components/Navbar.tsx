@@ -79,19 +79,17 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                 </Link>
               )}
 
-              {user?.role === "ORGANIZER" && (
-                <Link href="/create-event" className="hidden sm:block">
-                  <Button
-                    variant="ghost"
-                    className={
-                      variant === "transparent" ? buttonTransparent : buttonGhost
-                    }
-                  >
-                    <CalendarPlus className="h-4 w-4 mr-2" />
-                    Create Event
-                  </Button>
-                </Link>
-              )}
+                            {user?.role === "ORGANIZER" && (
+                                <Link href="/create-event" className="hidden sm:block">
+                                    <Button
+                                        variant="ghost"
+                                        className="bg-white/10 backdrop-blur-md border border-white text-white hover:bg-white hover:text-black"
+                                    >
+                                        <CalendarPlus className="h-4 w-4 mr-2" />
+                                        Create Event
+                                    </Button>
+                                </Link>
+                            )}
 
               {/* Profile */}
               <DropdownMenu>
@@ -161,42 +159,42 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                     </>
                   )}
 
-                  {user?.role === "ORGANIZER" && (
-                    <>
-                      <DropdownMenuItem>
-                        <Link href="/dashboard/create-event" className="w-full">
-                          Create Event
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Link href="/dashboard/my-events" className="w-full">
-                          My Events
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <Link href="/dashboard/attendees" className="w-full">
-                          Attendees
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={async () => {
-                          setIsSwitching(true);
-                          try {
-                            await switchRole();
-                            window.location.reload();
-                          } catch (err) {
-                            console.error(err);
-                          } finally {
-                            setIsSwitching(false);
-                          }
-                        }}
-                        disabled={isSwitching}
-                        className="text-blue-600"
-                      >
-                        {isSwitching ? "Mengalihkan peran..." : "Masuk sebagai Customer"}
-                      </DropdownMenuItem>
-                    </>
-                  )}
+                                    {user?.role === "ORGANIZER" && (
+                                        <>
+                                            <DropdownMenuItem>
+                                                <Link href="/dashboard/create-event" className="w-full">
+                                                    Create Event
+                                                </Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <Link href="/dashboard/my-events" className="w-full">
+                                                    My Events
+                                                </Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem>
+                                                <Link href="/dashboard/attendees" className="w-full">
+                                                    Attendees
+                                                </Link>
+                                            </DropdownMenuItem>
+                                            <DropdownMenuItem
+                                                onClick={async () => {
+                                                    setIsSwitching(true);
+                                                    try {
+                                                        await switchRole();
+                                                        window.location.reload();
+                                                    } catch (err) {
+                                                        console.error(err);
+                                                    } finally {
+                                                        setIsSwitching(false);
+                                                    }
+                                                }}
+                                                disabled={isSwitching}
+                                                className="text-blue-600"
+                                            >
+                                                {isSwitching ? "Mengalihkan peran..." : "Masuk sebagai Customer"}
+                                            </DropdownMenuItem>
+                                        </>
+                                    )}
 
                   <DropdownMenuSeparator />
 
