@@ -2,6 +2,7 @@ import { Calendar, MapPin, Clock, Star } from "lucide-react";
 import { Card, CardContent, CardFooter } from "./ui/cards";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface EventCardProps {
   id: string;
@@ -17,6 +18,7 @@ interface EventCardProps {
 }
 
 export function EventCard({ 
+  id,
   title, 
   image, 
   date, 
@@ -28,6 +30,7 @@ export function EventCard({
   isFeatured 
 }: EventCardProps) {
   return (
+    <Link href={`/events/${id}`} className="block">
     <Card className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="relative">
         <img
@@ -85,5 +88,6 @@ export function EventCard({
         </Button>
       </CardFooter>
     </Card>
+    </Link>
   );
 }

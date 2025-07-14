@@ -121,9 +121,9 @@ export default function MyTicketPage() {
                                 )}
 
                                 <p className={`text-sm font-semibold ${ticket.status === "PENDING" ? "text-yellow-500"
-                                        : ticket.status === "ACCEPTED" ? "text-green-600"
-                                            : ticket.status === "REJECTED" ? "text-red-500"
-                                                : "text-gray-400"
+                                    : ticket.status === "ACCEPTED" ? "text-green-600"
+                                        : ticket.status === "REJECTED" ? "text-red-500"
+                                            : "text-gray-400"
                                     }`}>
                                     Status: {isExpired ? "EXPIRED" : ticket.status}
                                 </p>
