@@ -78,6 +78,7 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                 </Link>
               )}
 
+
               {user?.role === "ORGANIZER" && (
                 <Link href="/dashboard/organizer/create-event" className="hidden sm:block">
                   <Button
@@ -91,7 +92,6 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                   </Button>
                 </Link>
               )}
-
               {/* Profile */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -196,6 +196,7 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                       </DropdownMenuItem>
                     </>
                   )}
+
 
                   <DropdownMenuSeparator />
 
