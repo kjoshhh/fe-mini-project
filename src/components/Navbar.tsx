@@ -30,8 +30,8 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
     variant === "transparent"
       ? "fixed z-50 bg-black/10 backdrop-blur-sm bg-opacity-30 border-b border-white/10"
       : variant === "solid-dark"
-      ? "relative z-0 bg-black text-white border-b border-black/20"
-      : "relative z-0 bg-white text-black border-b border-gray-200";
+        ? "relative z-0 bg-black text-white border-b border-black/20"
+        : "relative z-0 bg-white text-black border-b border-gray-200";
 
   // Button styles
   const buttonPrimary =
@@ -53,9 +53,8 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
         {/* Logo */}
         <Link href="/" className="flex-shrink-0 z-10">
           <span
-            className={`font-bold text-2xl transition-colors ${
-              variant === "transparent" ? "text-white" : "text-inherit"
-            }`}
+            className={`font-bold text-2xl transition-colors ${variant === "transparent" ? "text-white" : "text-inherit"
+              }`}
           >
             EventTix
           </span>
@@ -85,7 +84,7 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                     variant="ghost"
                     className={
                       variant === "transparent" ? buttonTransparent : buttonGhost
-                    } 
+                    }
                   >
                     <CalendarPlus className="h-4 w-4 mr-2 cursor-pointer" />
                     Create Event
@@ -102,8 +101,8 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                         user?.profileImg
                           ? `${user.profileImg}?v=${Date.now()}`
                           : `https://ui-avatars.com/api/?name=${encodeURIComponent(
-                              user?.username || "U"
-                            )}`
+                            user?.username || "U"
+                          )}`
                       }
                       alt="Profile"
                       className="w-full h-full object-cover rounded-full"
@@ -169,12 +168,12 @@ export default function Navbar({ className, variant = "transparent" }: NavbarPro
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/dashboard/my-events" className="w-full cursor-pointer">
+                        <Link href="/dashboard/organizer/my-events" className="w-full cursor-pointer">
                           My Events
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Link href="/dashboard/attendees" className="w-full cursor-pointer">
+                        <Link href="/dashboard/organizer/events/1/attendes" className="w-full cursor-pointer">
                           Attendees
                         </Link>
                       </DropdownMenuItem>

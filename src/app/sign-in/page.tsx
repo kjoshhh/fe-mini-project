@@ -21,17 +21,17 @@ export default function SignIn() {
     const { login, refreshUser } = useAuth();
 
     const inputEmailRef = useRef<HTMLInputElement>(null);
-    const inputUserNameRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
 
 
     const signIn = async (payload: SignInPayload) => {
-        const apiUrl = process.env.NEXT_PUBLIC_URL;
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
         const res = await axios.post(`${apiUrl}/auth/login`, payload);
         return res.data;
     };
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
     const btnSignIn = async (e: React.FormEvent) => {
         e.preventDefault();

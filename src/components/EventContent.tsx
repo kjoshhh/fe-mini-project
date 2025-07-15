@@ -3,6 +3,8 @@
 import { useRef } from "react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
 
 interface EventData {
   id: number;
@@ -24,10 +26,13 @@ interface EventData {
     id: number;
     username: string;
     email: string;
+    profileImg?: string;
   };
 }
 
+
 export function EventContent({ event }: { event: EventData }) {
+  const { user } = useAuth();
   const descriptionRef = useRef<HTMLDivElement>(null);
   const termsRef = useRef<HTMLDivElement>(null);
   const ticketsRef = useRef<HTMLDivElement>(null);
@@ -121,18 +126,30 @@ export function EventContent({ event }: { event: EventData }) {
 
             <div className="bg-gray-50 rounded-lg p-6">
               <div className="text-sm text-gray-600 mb-3">Diselenggarakan oleh</div>
-              <div className="flex items-center space-x-3">
+              <Link
+                href={`/organizer/profile/${event.organizer.id}`}
+                className="flex items-center space-x-3 hover:bg-gray-100 p-2 rounded transition"
+              >
                 <Avatar>
-                  <AvatarImage src="https://placehold.co/40" />
+                  <AvatarImage
+                    src={
+                      event.organizer.profileImg
+                        ? `${event.organizer.profileImg}?v=${Date.now()}`
+                        : `https://ui-avatars.com/api/?name=${encodeURIComponent(event.organizer.username)}`
+                    }
+                    alt={event.organizer.username}
+                  />
                   <AvatarFallback>
                     {event.organizer.username.slice(0, 2).toUpperCase()}
                   </AvatarFallback>
+
                 </Avatar>
                 <div>
                   <div className="font-medium">{event.organizer.username}</div>
                   <div className="text-xs text-gray-500">{event.organizer.email}</div>
                 </div>
-              </div>
+              </Link>
+
             </div>
           </div>
         </div>

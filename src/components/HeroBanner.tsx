@@ -1,7 +1,12 @@
+"use client"
+
+import { useAuth } from "@/context/AuthContext";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
 export function HeroBanner() {
+  const { user } = useAuth();
+
   return (
     <section className="relative h-[500px] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -25,11 +30,13 @@ export function HeroBanner() {
           <Button size="lg" className="text-lg px-8 py-6 cursor-pointer">
             Explore Event
           </Button>
-          <Link href="/create-event">
-            <Button size="lg" variant="outline" className="cursor-pointer text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-black">
-              Create Event
-            </Button>
-          </Link>
+          {user?.role === "ORGANIZER" && (
+            <Link href="/dashboard/organizer/create-event">
+              <Button size="lg" variant="outline" className="cursor-pointer text-lg px-8 py-6 bg-white/10 border-white text-white hover:bg-white hover:text-black">
+                Create Event
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </section>

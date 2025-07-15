@@ -20,7 +20,7 @@ interface Point {
 }
 
 interface DecodedToken {
-    id: string;
+    id: number;
     email: string;
     role: "CUSTOMER" | "ORGANIZER";
     username: string;

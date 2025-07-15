@@ -81,9 +81,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                                 active={pathname === "/dashboard/organizer/create-event"}
                             />
                             <SidebarLink
-                                href="/event-list"
+                                href="/dashboard/organizer/my-events"
                                 label="My Events"
-                                active={pathname === "/event-list"}
+                                active={pathname === "/dashboard/organizer/my-events"}
                             />
                             <SidebarLink
                                 href="/dashboard/organizer/events/1/attendes"

@@ -89,13 +89,13 @@ export default function EventListPage() {
     };
 
     fetchAndFilterEvents();
-  }, [searchParams]); // <== supaya re-run kalau URL berubah
+  }, [searchParams]); 
 
   return (
     <div className="min-h-screen bg-gray-50">
-    <Navbar variant="solid-light" />
+      <Navbar variant="solid-light" />
       <div className="flex">
-        <Sidebar/>
+        <Sidebar />
         <EventGrid events={filteredEvents} keyword={keyword} />
       </div>
     </div>
