@@ -23,12 +23,13 @@ export default function EventStatisticsPage() {
     const { id } = useParams();
     const [stats, setStats] = useState<Stat[]>([]);
     const [loading, setLoading] = useState(true);
+    const [interval, setInterval] = useState<"day" | "month" | "year">("day");
 
     useEffect(() => {
         const fetchStats = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:3030/events/${id}/statistics?interval=day`,
+                    `http://localhost:3030/events/${id}/statistics?interval=${interval}`,
                     { withCredentials: true }
                 );
                 setStats(res.data.data || []);
@@ -40,7 +41,7 @@ export default function EventStatisticsPage() {
         };
 
         if (id) fetchStats();
-    }, [id]);
+    }, [id, interval]);
 
     if (loading) return <div className="p-6">📊 Memuat statistik...</div>;
 
@@ -48,9 +49,21 @@ export default function EventStatisticsPage() {
         <div className="p-6 space-y-8">
             <h1 className="text-2xl font-bold text-gray-800">📈 Statistik Event</h1>
 
-            {/* Grafik Line */}
+            {/* Grafik Line dengan Dropdown Interval */}
             <div className="bg-white p-4 rounded-lg shadow border">
-                <h2 className="text-lg font-semibold mb-4 text-gray-700">Grafik Jumlah Tiket Terjual</h2>
+                <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-lg font-semibold text-gray-700">Grafik Jumlah Tiket Terjual</h2>
+                    <select
+                        value={interval}
+                        onChange={(e) => setInterval(e.target.value as "day" | "month" | "year")}
+                        className="border rounded px-2 py-1 text-sm text-gray-700"
+                    >
+                        <option value="day">Harian</option>
+                        <option value="month">Bulanan</option>
+                        <option value="year">Tahunan</option>
+                    </select>
+                </div>
+
                 <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={stats}>
                         <CartesianGrid strokeDasharray="3 3" />
@@ -62,7 +75,7 @@ export default function EventStatisticsPage() {
                 </ResponsiveContainer>
             </div>
 
-            {/* Tabel Detail */}
+            {/* Tabel Detail Statistik */}
             <div className="overflow-x-auto">
                 <table className="min-w-full border text-sm">
                     <thead className="bg-gray-100 text-gray-600">
@@ -78,7 +91,7 @@ export default function EventStatisticsPage() {
                                 <td className="border px-4 py-2">{stat.date}</td>
                                 <td className="border px-4 py-2 text-center">{stat.count}</td>
                                 <td className="border px-4 py-2 text-right">
-                                    Rp {Number(stat.totalAmount).toLocaleString()}
+                                    Rp {Number(stat.totalAmount).toLocaleString("id-ID")}
                                 </td>
                             </tr>
                         ))}
